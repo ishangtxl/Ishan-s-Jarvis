@@ -14,6 +14,8 @@
 
 [Introduction](#introduction) • [Features](#features) • [Architecture](#architecture) • [Installation](#installation) • [Usage](#usage) • [Tech Stack](#tech-stack)
 
+**[View Demo Video](https://drive.google.com/drive/folders/1QST4EQfDJLva3pVj0MF_fWXrVCRlPHr6?usp=sharing)**
+
 </div>
 
 ---
