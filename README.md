@@ -12,11 +12,14 @@
 
 **Your intelligent, agentic AI companion for seamless personal workflow management.**
 
-[Introduction](#introduction) • [Features](#features) • [Architecture](#architecture) • [Installation](#installation) • [Usage](#usage) • [Tech Stack](#tech-stack)
-
 **[View Demo Video](https://drive.google.com/drive/folders/1QST4EQfDJLva3pVj0MF_fWXrVCRlPHr6?usp=sharing)**
 
+[![Demo Video](https://img.shields.io/badge/Demo_Video-Watch_Now-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://drive.google.com/drive/folders/1QST4EQfDJLva3pVj0MF_fWXrVCRlPHr6?usp=sharing)
+
+[Introduction](#introduction) • [Features](#features) • [Architecture](#architecture) • [Installation](#installation) • [Usage](#usage) • [Tech Stack](#tech-stack)
+
 </div>
+
 
 ---
 
