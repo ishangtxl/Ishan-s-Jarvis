@@ -52,13 +52,25 @@ async def read_session(session_id: int, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Session not found")
     return db_session
 
+@router.put("/sessions/{session_id}", response_model=schemas.ChatSessionSummary)
+async def update_session(session_id: int, session: schemas.ChatSessionBase, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(ChatSession).where(ChatSession.id == session_id))
+    db_session = result.scalar_one_or_none()
+    if not db_session:
+        raise HTTPException(status_code=404, detail="Session not found")
+
+    db_session.title = session.title
+    await db.commit()
+    await db.refresh(db_session)
+    return db_session
+
 @router.delete("/sessions/{session_id}")
 async def delete_session(session_id: int, db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(ChatSession).where(ChatSession.id == session_id))
     db_session = result.scalar_one_or_none()
     if not db_session:
         raise HTTPException(status_code=404, detail="Session not found")
-    
+
     await db.delete(db_session)
     await db.commit()
     return {"message": "Session deleted"}

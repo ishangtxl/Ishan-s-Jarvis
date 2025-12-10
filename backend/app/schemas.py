@@ -27,6 +27,15 @@ class Task(TaskBase):
     class Config:
         from_attributes = True
 
+class TaskFile(BaseModel):
+    id: int
+    filename: str
+    file_type: str
+    summary: Optional[str] = None
+    created_at: datetime
+    class Config:
+        from_attributes = True
+
 # --- Calendar Schemas ---
 class EventBase(BaseModel):
     title: str

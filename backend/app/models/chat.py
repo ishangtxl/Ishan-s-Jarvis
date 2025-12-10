@@ -11,6 +11,9 @@ class ChatSession(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
+    # Link to a task if this is a task-specific chat
+    task_id = Column(Integer, ForeignKey("tasks.id"), nullable=True)
+
     messages = relationship("Message", back_populates="session", cascade="all, delete-orphan")
 
 class Message(Base):

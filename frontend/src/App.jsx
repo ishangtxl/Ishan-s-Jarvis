@@ -6,6 +6,8 @@ import CalendarWidget from './components/CalendarWidget';
 import TodoListWidget from './components/TodoListWidget';
 import EventModal from './components/EventModal';
 import MemoryModal from './components/MemoryModal';
+import TaskChatView from './components/TaskChatView';
+import SettingsView from './components/SettingsView';
 import { tasksApi } from './api/client';
 import { Clock, Brain, Search, Mic, Bell } from 'lucide-react';
 import TasksView from './components/TasksView';
@@ -20,6 +22,7 @@ function App() {
     const [isEventModalOpen, setIsEventModalOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
     const [isMemoryOpen, setIsMemoryOpen] = useState(false);
+    const [activeTaskChat, setActiveTaskChat] = useState(null);
 
     useEffect(() => {
         fetchData();
@@ -120,7 +123,15 @@ function App() {
         }
     };
 
+    const handleOpenTaskChat = (task) => {
+        setActiveTaskChat(task);
+    };
+
     const renderContent = () => {
+        if (activeTaskChat) {
+            return <TaskChatView task={activeTaskChat} onBack={() => setActiveTaskChat(null)} />;
+        }
+
         switch (activeTab) {
             case 'dashboard':
                 return (
@@ -153,7 +164,7 @@ function App() {
                                     onUpdateTask={handleUpdateTask}
                                     onToggleStatus={handleToggleStatus}
                                     onDeleteTask={handleDeleteTask}
-                                    onOpenTaskChat={(t) => console.log('Open chat for', t)}
+                                    onOpenTaskChat={handleOpenTaskChat}
                                 />
                             </div>
                         </div>
@@ -170,11 +181,11 @@ function App() {
                         onAddTask={handleAddTask}
                         onUpdateTask={handleUpdateTask}
                         onDeleteTask={handleDeleteTask}
-                        onOpenTaskChat={(t) => console.log('Open chat for', t)}
+                        onOpenTaskChat={handleOpenTaskChat}
                     />
                 );
             case 'settings':
-                return <div className="p-10 text-[#666] font-mono text-center">Settings module not initialized.</div>;
+                return <SettingsView />;
             default:
                 return null;
         }

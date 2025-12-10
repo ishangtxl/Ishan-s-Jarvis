@@ -12,7 +12,18 @@ export const tasksApi = {
 
     getEvents: () => api.get('/events'),
     createEvent: (event) => api.post('/events', event),
-    deleteEvent: (id) => api.delete(`/events/${id}`)
+    deleteEvent: (id) => api.delete(`/events/${id}`),
+
+    // Task Specific Chat & Files
+    getChatSession: (taskId) => api.post(`/tasks/${taskId}/chat`),
+    getFiles: (taskId) => api.get(`/tasks/${taskId}/files`),
+    uploadFile: (taskId, file) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        return api.post(`/tasks/${taskId}/upload`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        });
+    }
 };
 
 export const projectsApi = {
@@ -33,6 +44,7 @@ export const chatApi = {
     getSessions: () => api.get('/chat/sessions'),
     createSession: (title) => api.post('/chat/sessions', { title }),
     getSession: (id) => api.get(`/chat/sessions/${id}`),
+    updateSession: (id, title) => api.put(`/chat/sessions/${id}`, { title }),
     deleteSession: (id) => api.delete(`/chat/sessions/${id}`),
     transcribe: (file) => {
         const formData = new FormData();

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
     Plus, Trash2, MessageSquare, MoreHorizontal, Cpu, Bot, Terminal,
-    Mic, ArrowRight, FileText, Hash, Brain, ChevronRight
+    Mic, ArrowRight, FileText, Hash, Brain, ChevronRight, Pencil, Check, X
 } from 'lucide-react';
 import { useChat } from '../hooks/useChat';
 import { chatApi } from '../api/client';
@@ -77,6 +77,8 @@ const ChatView = () => {
     const [input, setInput] = useState('');
     const [isRecording, setIsRecording] = useState(false);
     const [isTranscribing, setIsTranscribing] = useState(false);
+    const [editingSessionId, setEditingSessionId] = useState(null);
+    const [editTitle, setEditTitle] = useState('');
     const { messages, sendMessage, status } = useChat(activeSessionId);
     const messagesEndRef = useRef(null);
     const mediaRecorderRef = useRef(null);
@@ -94,8 +96,11 @@ const ChatView = () => {
     const loadSessions = async () => {
         try {
             const res = await chatApi.getSessions();
-            // Filter out project chats (they appear in project views only)
-            const generalSessions = res.data.filter(session => !session.title.startsWith('Project:'));
+            // Filter out project and task chats (they appear in their respective views only)
+            const generalSessions = res.data.filter(session =>
+                !session.title.startsWith('Project:') &&
+                !session.title.startsWith('Task:')
+            );
             setSessions(generalSessions);
             if (generalSessions.length > 0 && !activeSessionId) {
                 setActiveSessionId(generalSessions[0].id);
@@ -125,7 +130,42 @@ const ChatView = () => {
         } catch (err) {
             console.error(err);
         }
-    }
+    };
+
+    const startEditing = (session, e) => {
+        e.stopPropagation();
+        setEditingSessionId(session.id);
+        setEditTitle(session.title);
+    };
+
+    const cancelEditing = () => {
+        setEditingSessionId(null);
+        setEditTitle('');
+    };
+
+    const saveTitle = async (sessionId, e) => {
+        e?.stopPropagation();
+        if (!editTitle.trim()) return;
+
+        try {
+            await chatApi.updateSession(sessionId, editTitle);
+            setSessions(sessions.map(s =>
+                s.id === sessionId ? { ...s, title: editTitle } : s
+            ));
+            setEditingSessionId(null);
+            setEditTitle('');
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const handleKeyDown = (e, sessionId) => {
+        if (e.key === 'Enter') {
+            saveTitle(sessionId, e);
+        } else if (e.key === 'Escape') {
+            cancelEditing();
+        }
+    };
 
     const handleSend = () => {
         if (!input.trim()) return;
@@ -203,17 +243,58 @@ const ChatView = () => {
                     {sessions.map((session) => (
                         <div
                             key={session.id}
-                            onClick={() => setActiveSessionId(session.id)}
-                            className={`group p-3 rounded-sm cursor-pointer border transition-all ${activeSessionId === session.id
+                            onClick={() => editingSessionId !== session.id && setActiveSessionId(session.id)}
+                            className={`group p-3 rounded-sm border transition-all ${activeSessionId === session.id
                                 ? 'bg-[#1f1f1f] border-orange-500/50'
                                 : 'bg-transparent border-transparent hover:bg-[#1a1a1a] hover:border-[#333]'
-                                }`}
+                                } ${editingSessionId === session.id ? 'cursor-default' : 'cursor-pointer'}`}
                         >
                             <div className="flex justify-between items-center mb-1">
                                 <span className={`text-[10px] font-mono ${activeSessionId === session.id ? 'text-orange-500' : 'text-[#666]'}`}>#{session.id}</span>
                                 <span className="text-[9px] text-[#555]">{new Date(session.created_at).toLocaleDateString()}</span>
                             </div>
-                            <div className={`text-sm font-medium truncate mb-1 ${activeSessionId === session.id ? 'text-[#e5e5e5]' : 'text-[#ccc]'}`}>{session.title}</div>
+                            <div className="flex items-center gap-2">
+                                {editingSessionId === session.id ? (
+                                    <>
+                                        <input
+                                            type="text"
+                                            value={editTitle}
+                                            onChange={(e) => setEditTitle(e.target.value)}
+                                            onKeyDown={(e) => handleKeyDown(e, session.id)}
+                                            onClick={(e) => e.stopPropagation()}
+                                            className="flex-1 bg-[#111] border border-[#444] rounded-sm px-2 py-1 text-xs text-[#e5e5e5] focus:outline-none focus:border-orange-500"
+                                            autoFocus
+                                        />
+                                        <button
+                                            onClick={(e) => saveTitle(session.id, e)}
+                                            className="p-1 text-emerald-500 hover:bg-[#222] rounded-sm"
+                                            title="Save"
+                                        >
+                                            <Check size={12} />
+                                        </button>
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); cancelEditing(); }}
+                                            className="p-1 text-red-400 hover:bg-[#222] rounded-sm"
+                                            title="Cancel"
+                                        >
+                                            <X size={12} />
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className={`flex-1 text-sm font-medium truncate ${activeSessionId === session.id ? 'text-[#e5e5e5]' : 'text-[#ccc]'}`}>
+                                            {session.title}
+                                        </div>
+                                        <button
+                                            onClick={(e) => startEditing(session, e)}
+                                            className="opacity-0 group-hover:opacity-100 p-1 text-[#666] hover:text-orange-500 hover:bg-[#222] rounded-sm transition-all"
+                                            title="Rename"
+                                        >
+                                            <Pencil size={12} />
+                                        </button>
+                                    </>
+                                )}
+                            </div>
                         </div>
                     ))}
                 </div>

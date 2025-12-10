@@ -49,6 +49,32 @@ app.include_router(memory.router, prefix="/api", tags=["memory"]) # /api/memory
 async def health_check():
     return {"status": "online", "model": settings.LLM_MODEL}
 
+@app.get("/api/config")
+async def get_config():
+    """Get current configuration and environment details"""
+    return {
+        "app_name": settings.APP_NAME,
+        "debug": settings.DEBUG,
+        "llm": {
+            "model": settings.LLM_MODEL,
+            "base_url": settings.OLLAMA_BASE_URL,
+            "embedding_model": settings.EMBEDDING_MODEL
+        },
+        "vector_db": {
+            "provider": "Pinecone",
+            "environment": settings.PINECONE_ENVIRONMENT,
+            "index_name": settings.PINECONE_INDEX_NAME,
+            "enabled": bool(settings.PINECONE_API_KEY)
+        },
+        "database": {
+            "type": "SQLite",
+            "url": settings.DATABASE_URL.split("///")[-1] if "///" in settings.DATABASE_URL else "In-memory"
+        },
+        "storage": {
+            "upload_dir": settings.UPLOAD_DIR
+        }
+    }
+
 @app.get("/")
 async def root():
     return {"message": "Jarvis Backend Operational"}
