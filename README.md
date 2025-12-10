@@ -1,4 +1,4 @@
-# 🤖 Jarvis - Your Personal AI Assistant
+# Jarvis - Your Personal AI Assistant
 
 <div align="center">
 
@@ -12,13 +12,13 @@
 
 **Your intelligent, agentic AI companion for seamless personal workflow management.**
 
-[Introduction](#-introduction) • [Features](#-features) • [Architecture](#-architecture) • [Installation](#-installation) • [Usage](#-usage) • [Tech Stack](#-tech-stack)
+[Introduction](#introduction) • [Features](#features) • [Architecture](#architecture) • [Installation](#installation) • [Usage](#usage) • [Tech Stack](#tech-stack)
 
 </div>
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### Dashboard
 
@@ -38,7 +38,7 @@
 
 ---
 
-## 🌟 Introduction
+## Introduction
 
 **Jarvis** is your **personal workflow management system** — an intelligent, AI-powered companion designed to help you manage your daily work seamlessly. 
 
@@ -46,65 +46,54 @@ In today's fast-paced world, productivity often gets fragmented across different
 
 ### What Makes Jarvis Different?
 
-🤝 **Agentic AI** — Unlike passive chatbots, Jarvis is an **autonomous agent** that can take real actions on your behalf. Ask it to "create a task for tomorrow's meeting prep" or "add a calendar event for Friday at 3 PM" and it will **automatically create and manage** tasks and calendar events for you.
+**Agentic AI** — Unlike passive chatbots, Jarvis is an **autonomous agent** that can take real actions on your behalf. Ask it to "create a task for tomorrow's meeting prep" or "add a calendar event for Friday at 3 PM" and it will **automatically create and manage** tasks and calendar events for you.
 
-📁 **Unified Workspace** — Bring together your **projects**, **tasks**, **calendar events**, and **documents** in one place. Each project has its own chat context, file storage, and task board — everything you need, exactly where you need it.
+**Unified Workspace** — Bring together your **projects**, **tasks**, **calendar events**, and **documents** in one place. Each project has its own chat context, file storage, and task board — everything you need, exactly where you need it.
 
-🎤 **Voice-First Interaction** — Speak naturally to Jarvis using **OpenAI Whisper** integration. Just click and talk — no typing required. Perfect for quick task creation, asking questions, or when your hands are busy.
+**Voice-First Interaction** — Speak naturally to Jarvis using **OpenAI Whisper** integration. Just click and talk — no typing required. Perfect for quick task creation, asking questions, or when your hands are busy.
 
-🧠 **Contextual Intelligence** — Through **RAG (Retrieval-Augmented Generation)**, Jarvis can answer questions using your uploaded documents. Upload meeting notes, research papers, or code files, and Jarvis becomes an expert on YOUR content.
+**Contextual Intelligence** — Through **RAG (Retrieval-Augmented Generation)**, Jarvis can answer questions using your uploaded documents. Upload meeting notes, research papers, or code files, and Jarvis becomes an expert on YOUR content.
 
-💾 **Memory That Persists** — Jarvis remembers your preferences, past conversations, and important context across sessions. It learns how you work and adapts accordingly.
-
-### The Vision
-
-Imagine starting your day by simply telling Jarvis: *"What's on my plate today?"* — and getting a comprehensive view of your tasks, calendar, and any context from your ongoing projects. Then, as you work through your day, you can naturally say things like:
-
-- *"Add a task to review the API documentation, high priority"*
-- *"Schedule a meeting with the team for next Tuesday at 2 PM"*
-- *"What did the client say in that email about the deadline?"*
-- *"Show me the status of Project Alpha"*
-
-Jarvis turns scattered workflows into a **unified, intuitive experience** — powered by local AI that respects your privacy and works offline.
+**Memory That Persists** — Jarvis remembers your preferences, past conversations, and important context across sessions. It learns how you work and adapts accordingly.
 
 ---
 
 ## Features
 
-### 🧠 **Intelligent AI Chat**
+### Intelligent AI Chat
 - **Local LLM Integration** - Powered by Ollama (Qwen 3:4b model)
 - **Streaming Responses** - Real-time message streaming with WebSocket
 - **Context-Aware** - Remembers conversation history across sessions
-- **🎤 Voice Chat** - Speak naturally using **OpenAI Whisper** transcription — just click and talk!
+- **Voice Chat** - Speak naturally using **OpenAI Whisper** transcription — just click and talk!
 - **Thought Process Visualization** - View AI reasoning in collapsible sections
 
-### 🤖 **Agentic AI Capabilities**
+### Agentic AI Capabilities
 - **Task Creation & Editing** - Ask AI to create, update, or complete tasks using natural language
 - **Calendar Event Management** - Add, modify, or query calendar events through conversation
 - **Autonomous Actions** - AI can take real actions on your behalf, not just provide information
 - **Tool Calling** - Integrated tool system for seamless task and calendar automation
 - **Smart Scheduling** - Tell Jarvis "Schedule a meeting for tomorrow at 2 PM" and it handles the rest
 
-### 📁 **Project Management**
+### Project Management
 - **Multi-Project Support** - Organize work across different projects
 - **File Upload & Processing** - Supports PDF, DOCX, text, and code files
 - **RAG (Retrieval Augmented Generation)** - AI answers questions using your uploaded files
 - **Project-Specific Chats** - Isolated chat sessions with project context
 - **Smart Embeddings** - Automatic file chunking and vector storage
 
-### ✅ **Task & Calendar Management**
+### Task & Calendar Management
 - **Kanban Board** - Drag-and-drop task management (Todo → In Progress → Done)
 - **Priority Levels** - Organize tasks by priority (Low, Medium, High)
 - **Task Tags** - Categorize with custom tags (DEV, BUG, GEN, etc.)
 - **Calendar Integration** - Schedule events and link them to tasks
 - **AI Task Creation** - Ask AI to create tasks via natural language
 
-### 🧩 **Memory System**
+### Memory System
 - **Persistent Memory** - Store user preferences and important context
 - **Category-Based** - Organize memories by categories
 - **Context Injection** - Memories are automatically included in AI prompts
 
-### 🎨 **Modern UI/UX**
+### Modern UI/UX
 - **Dark Theme** - Eye-friendly dark interface with orange accents
 - **Responsive Design** - Works on desktop and mobile
 - **Real-Time Updates** - Live status indicators and notifications
@@ -167,7 +156,7 @@ graph TB
     style A fill:#61dafb
 ```
 
-### 🔄 Data Flow
+### Data Flow
 
 ```mermaid
 sequenceDiagram
@@ -195,7 +184,7 @@ sequenceDiagram
 
 ---
 
-## 📦 Tech Stack
+## Tech Stack
 
 ### **Backend**
 | Technology | Version | Purpose |
@@ -229,7 +218,7 @@ sequenceDiagram
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 
@@ -308,7 +297,7 @@ mkdir -p ../data/uploads
 
 ---
 
-## 🎮 Usage
+## Usage
 
 ### Starting the Application
 
@@ -339,7 +328,7 @@ Frontend will be available at: `http://localhost:5173`
 
 ---
 
-## 📚 API Documentation
+## API Documentation
 
 Once the backend is running, access the interactive API docs:
 
@@ -349,7 +338,7 @@ Once the backend is running, access the interactive API docs:
 
 ---
 
-## 🎯 Use Cases
+## Use Cases
 
 ### For Developers
 - **Code Documentation** - Upload code files and ask questions
@@ -370,7 +359,7 @@ Once the backend is running, access the interactive API docs:
 
 ---
 
-## 🔧 Configuration (Feel free to change)
+## Configuration
 
 ### Environment Variables
 
@@ -390,7 +379,7 @@ Once the backend is running, access the interactive API docs:
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Backend Issues
 
@@ -424,19 +413,19 @@ rm data/jarvis.db  # Warning: This deletes all data!
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🎓 About
+## About
 
 This project was developed as part of the **Diligent Internship Exercise** to demonstrate:
 - Full-stack development capabilities
@@ -451,8 +440,8 @@ This project was developed as part of the **Diligent Internship Exercise** to de
 
 <div align="center">
 
-**Built with ❤️ using FastAPI, React, and Ollama**
+**Built with FastAPI, React, and Ollama**
 
-[⬆ Back to Top](#-jarvis---your-personal-ai-assistant)
+[Back to Top](#jarvis---your-personal-ai-assistant)
 
 </div>
