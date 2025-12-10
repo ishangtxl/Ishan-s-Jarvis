@@ -1,0 +1,87 @@
+# Claude Code Files
+CLAUDE.md
+.claude/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+backend/venv/
+backend/env/
+*.egg-info/
+dist/
+build/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+data/jarvis.db
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+*.env
+
+# Logs
+*.log
+logs/
+backend/error.log
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+.tox/
+test_*.py
+*_test.py
+tests/__pycache__/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+frontend/dist/
+frontend/build/
+.cache/
+
+# Uploads
+data/uploads/
+uploads/
+
+# Planning & Debug Files
+PLAN.md
+TODO.md
+NOTES.md
+DEBUG.md
+*.draft
+*.backup
+.backup/
+scratch/
+planning/
+
+# Frontend Build
+frontend-design.jsx
+
+# OS
+.DS_Store
+Thumbs.db
